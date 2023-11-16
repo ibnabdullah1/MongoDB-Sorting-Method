@@ -41,7 +41,7 @@ The above query will return the students organized by their date of birth in the
 
 
 
-To reverse the ordering, set the sort column to ```-1``` instead of ```1```:
+# To reverse the ordering, set the sort column to ```-1``` instead of ```1```:
 ```db.students.find({}, {
     _id: 0,
     first_name: 1,
