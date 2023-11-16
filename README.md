@@ -110,24 +110,24 @@ db.students.find({}, {
 However, there are two students with the last name of "Apple" and the returned ordering isn't alphabetical when considering their first name as well.
 
 # To fix this, we can use first_name as a secondary sort field:
-```
-db.students.find({}, {
+
+
+```db.students.find({}, {
     _id: 0,
     first_name: 1,
     last_name: 1,
 }).sort({
     last_name: 1,
     first_name: 1
-}).pretty()``
+}).pretty()```
 
-```
-{ "first_name" : "Anthony", "last_name" : "Apple" }
+```{ "first_name" : "Anthony", "last_name" : "Apple" }
 { "first_name" : "Carol", "last_name" : "Apple" }
 { "first_name" : "Spencer", "last_name" : "Burton" }
 { "first_name" : "Nixie", "last_name" : "Languin" }
 { "first_name" : "Lain", "last_name" : "Singh" }
-{ "first_name" : "Rose", "last_name" : "Southby" }
-```
+{ "first_name" : "Rose", "last_name" : "Southby" }```
+
 After that further specification, the results match the conventional alphabetical ordering that we would expect for names.
 
 # How to sort using embedded document fields
@@ -145,8 +145,7 @@ For example, you can sort the student data based on the city where they live, wh
 }).pretty()```
 
 
-```
-{
+```{
     "first_name" : "Lain",
     "last_name" : "Singh",
     "address" : {
