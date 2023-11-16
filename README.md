@@ -3,9 +3,7 @@
 The basic approach to sorting results in MongoDB is to append the .sort() method onto a query. The ```.sort() ```method takes a document as an argument specifying the fields to sort as well as the sort direction.
 The most basic way to sort results it to provide a document specifying a single field indicating the column name with a value of ```1``` indicating an ascending sort:
 Note that we're providing a MongoDB projection as the second argument to ```.find()``` to only display certain fields. We're also appending the ```.pretty()``` method to make the output more readable.
-```
-db.students.find({}, {_id: 0,first_name: 1,last_name: 1,dob: 1}).sort({dob: 1}).pretty()
-```
+```db.students.find({}, {_id: 0,first_name: 1,last_name: 1,dob: 1}).sort({dob: 1}).pretty()```
 
 The above query will return the students organized by their date of birth in the default ascending order:
 
@@ -82,7 +80,7 @@ To reverse the ordering, set the sort column to ```-1``` instead of ```1```:
 {
     "first_name" : "Spencer",
     "last_name" : "Burton",
-    "dob" : ISODate("2008-12-04T00:00:00Z") ```
+    "dob" : ISODate("2008-12-04T00:00:00Z")```
 
 
 
@@ -91,8 +89,8 @@ To reverse the ordering, set the sort column to ```-1``` instead of ```1```:
 MongoDB can use additional fields to control sorting for cases where the primary sort field contains duplicates. To do so, you can pass the extra fields and their sort order within the document that you pass to the sort() function.
 
 For example, if we sort the student documents by last_name, we can get an alphabetical list of students based on that one field:
-```
-db.students.find({}, {
+
+```db.students.find({}, {
     _id: 0,
     first_name: 1,
     last_name: 1,
@@ -100,13 +98,13 @@ db.students.find({}, {
     last_name: 1
 }).pretty()```
 
-```
-{ "first_name" : "Carol", "last_name" : "Apple" }
+```{ "first_name" : "Carol", "last_name" : "Apple" }
 { "first_name" : "Anthony", "last_name" : "Apple" }
 { "first_name" : "Spencer", "last_name" : "Burton" }
 { "first_name" : "Nixie", "last_name" : "Languin" }
 { "first_name" : "Lain", "last_name" : "Singh" }
 { "first_name" : "Rose", "last_name" : "Southby" }```
+
 However, there are two students with the last name of "Apple" and the returned ordering isn't alphabetical when considering their first name as well.
 
 # To fix this, we can use first_name as a secondary sort field:
